@@ -33,11 +33,18 @@ namespace build
                 var packagesToPush = Directory.GetFiles(ArtifactsDir, "*.nupkg", SearchOption.TopDirectoryOnly);
                 Console.WriteLine($"Found packages to publish: {string.Join("; ", packagesToPush)}");
 
-                var apiKey = Environment.GetEnvironmentVariable("MYGET_API_KEY");
+                var apiKey = Environment.GetEnvironmentVariable("NUGET_API_KEY");
+                var travisTag = Environment.GetEnvironmentVariable("TRAVIS_TAG");
 
                 if (string.IsNullOrWhiteSpace(apiKey))
                 {
-                    Console.WriteLine("MyGet API key not available. Packages will not be pushed.");
+                    Console.WriteLine("NUGET API key not available. Packages will not be pushed.");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(travisTag))
+                {
+                    Console.WriteLine("Not a tag build. Packages will not be pushed.");
                     return;
                 }
 
