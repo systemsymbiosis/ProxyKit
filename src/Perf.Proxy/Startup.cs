@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using ProxyKit;
 
-namespace Perf.UpstreamHost
+namespace Perf.Proxy
 {
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddProxy();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -18,10 +19,7 @@ namespace Perf.UpstreamHost
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.RunProxy(context => context.ForwardTo("http://localhost:5001").Send());
         }
     }
 }

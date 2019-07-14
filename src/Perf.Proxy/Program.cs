@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Net.Http;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Perf.UpstreamHost
+namespace Perf.Proxy
 {
     public class Program
     {
@@ -15,7 +16,7 @@ namespace Perf.UpstreamHost
         {
             return WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:5001");
+                .UseUrls("http://localhost:5000");
         }
     }
 }
