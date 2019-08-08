@@ -22,7 +22,7 @@ namespace WebSockerReceive
         private static async Task Echo(HttpContext context, WebSocket webSocket)
         {
             var buffer = new byte[1024 * 4];
-            WebSocketReceiveResult result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+            var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
             while (!result.CloseStatus.HasValue)
             {
                 await webSocket.SendAsync(new ArraySegment<byte>(buffer, 0, result.Count), result.MessageType, result.EndOfMessage, CancellationToken.None);
@@ -60,11 +60,6 @@ namespace WebSockerReceive
                 {
                     await next();
                 }
-            });
-
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("Hello World");
             });
         }
 
