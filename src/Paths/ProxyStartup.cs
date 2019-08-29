@@ -15,20 +15,20 @@ namespace ProxyKit.Recipe.Simple
 
         public void Configure(IApplicationBuilder app)
         {
-            // Forwards requests from /app1 to upstream host http://localhost:5001/foo/
+            // Forwards requests from /app1 to upstream host http://localhost:55001/foo/
             app.Map("/app1", app1 =>
             {
                 app1.RunProxy(context => context
-                    .ForwardTo("http://localhost:5001/foo/")
+                    .ForwardTo("http://localhost:55001/foo/")
                     .AddXForwardedHeaders()
                     .Send());
             });
 
-            // Forwards requests from /app2 to upstream host http://localhost:5002/bar/
+            // Forwards requests from /app2 to upstream host http://localhost:55002/bar/
             app.Map("/app2", app2 =>
             {
                 app2.RunProxy(context => context
-                    .ForwardTo("http://localhost:5002/bar/")
+                    .ForwardTo("http://localhost:55002/bar/")
                     .AddXForwardedHeaders()
                     .Send());
             });

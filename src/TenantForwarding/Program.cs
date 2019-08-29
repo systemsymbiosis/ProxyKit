@@ -11,12 +11,12 @@ namespace ProxyKit.Recipe.Simple
         {
             var tenant1Host = WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Tenant1Startup>()
-                .UseUrls("http://localhost:5001")
+                .UseUrls("http://localhost:55001")
                 .Build();
 
             var tenant2Host = WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Tenant2Startup>()
-                .UseUrls("http://localhost:5002")
+                .UseUrls("http://localhost:55002")
                 .Build();
 
             var proxyHost = WebHost.CreateDefaultBuilder(args)

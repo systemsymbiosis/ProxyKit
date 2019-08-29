@@ -11,12 +11,12 @@ namespace ProxyKit.Recipe.Simple
         {
             var upstreamHost1 = WebHost.CreateDefaultBuilder(args)
                 .UseStartup<UpstreamHost1Startup>()
-                .UseUrls("http://localhost:5001")
+                .UseUrls("http://localhost:55001")
                 .Build();
 
             var upstreamHost2 = WebHost.CreateDefaultBuilder(args)
                 .UseStartup<UpstreamHost1Startup>()
-                .UseUrls("http://localhost:5002")
+                .UseUrls("http://localhost:55002")
                 .Build();
 
             var proxyHost = WebHost.CreateDefaultBuilder(args)

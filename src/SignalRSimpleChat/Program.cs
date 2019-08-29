@@ -10,12 +10,12 @@ namespace ProxyKit.Recipe.SignalRSimpleChat
         {
             var upstreamHost = WebHost.CreateDefaultBuilder(args)
                 .UseStartup<SignalRChatStartup>()
-                .UseUrls("http://localhost:5001")
+                .UseUrls("http://localhost:55001")
                 .Build();
 
             var proxyHost = WebHost.CreateDefaultBuilder(args)
                 .UseStartup<ProxyStartup>()
-                .UseUrls("http://localhost:5000")
+                .UseUrls("http://localhost:55000")
                 .Build();
 
             await upstreamHost.StartAsync();

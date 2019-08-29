@@ -14,7 +14,7 @@ namespace ProxyKit.Recipe.Simple
         public void Configure(IApplicationBuilder app)
         {
             app.RunProxy(context => context
-                .ForwardTo("http://localhost:5001")
+                .ForwardTo("http://localhost:55001")
                 .AddXForwardedHeaders()
                 .Send());
         }

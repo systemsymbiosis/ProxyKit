@@ -20,9 +20,9 @@ namespace ProxyKit.Recipe.SignalRSimpleChat
             // to be forwarded to the servers hosting signalr hubs.
             app.Map("/subpath", appInner =>
             {
-                appInner.UseWebSocketProxy(context => new Uri("ws://localhost:5001/subpath/"));
+                appInner.UseWebSocketProxy(context => new Uri("ws://localhost:55001/subpath/"));
                 appInner.RunProxy(context => context
-                    .ForwardTo("http://localhost:5001/subpath/")
+                    .ForwardTo("http://localhost:55001/subpath/")
                     .AddXForwardedHeaders()
                     .Send());
             });
